@@ -1,5 +1,4 @@
 class Room {
-
     constructor(name, description) {
         this.name = name;
         this.description = description;
@@ -15,7 +14,9 @@ class Room {
         console.log(this.description);
         console.log("");
         if (this.items.length > 0) {
-            console.log(`Items: ${this.items.map(item => item.name).join(", ")}`);
+            console.log(
+                `Items: ${this.items.map((item) => item.name).join(", ")}`
+            );
         }
         console.log(this.getExitsString());
         console.log("");
@@ -26,13 +27,12 @@ class Room {
     }
 
     getExitsString() {
-        return `Exits: ${this.getExits().join(", ")}`
+        return `Exits: ${this.getExits().join(", ")}`;
     }
 
     connectRooms(direction, connectingRoom) {
-
         // Check if the direction and connecting room are valid
-        if (['n', 's', 'e', 'w'].indexOf(direction) < 0 || !connectingRoom) {
+        if (["n", "s", "e", "w"].indexOf(direction) < 0 || !connectingRoom) {
             throw new Error("Error: Invalid room connection");
         }
 
@@ -45,12 +45,16 @@ class Room {
 
     getItemByName(name) {
         // Retrieves an item from a room by item name
-
-        // Your code here 
+        // Your code here
+        let names = [];
+        for (let ele of this.items) {
+            names.push(ele.name);
+        }
+        let itemIndex = names.indexOf(name);
+        return this.items[itemIndex];
     }
-
 }
 
 module.exports = {
-  Room,
+    Room,
 };
